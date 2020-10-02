@@ -24,7 +24,7 @@ if __name__ == "__main__":
     agent = aitools.rl.AgentExploring(policy_net=policy_net)
     trainer = aitools.rl.train.VPGTrainer(
         agent=agent,
-        optimizer=policy_net.build_optimizer(torch.optim.Adam, lr=0.0005),
+        optimizer=policy_net.build_optimizer(torch.optim.Adam, lr=0.0001),
         y=0.99,
     )
 
