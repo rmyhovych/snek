@@ -31,7 +31,7 @@ class VisualGame(Game):
         for cell in self.snake.cells:
             self._drawCell(cell, (20, 150, 20))
 
-        time.sleep(0.1)
+        time.sleep(0.05)
         pygame.display.update()
 
     def _visual_start(self):

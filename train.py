@@ -24,7 +24,7 @@ if __name__ == "__main__":
     agent = aitools.rl.AgentExploring(policy_net=policy_net)
     trainer = aitools.rl.train.VPGTrainer(
         agent=agent,
-        optimizer=policy_net.build_optimizer(torch.optim.Adam, lr=0.0001),
+        optimizer=policy_net.build_optimizer(torch.optim.Adam, lr=0.001),
         y=0.99,
     )
 
@@ -37,12 +37,12 @@ if __name__ == "__main__":
     )
     value_estimator = aitools.rl.value.ValueEstimator(
         value_net,
-        value_net.build_optimizer(torch.optim.Adam, lr=0.02),
+        value_net.build_optimizer(torch.optim.Adam, lr=0.01),
         loss_f=torch.nn.functional.mse_loss,
     )
 
     aitools.rl.train.TrainingProcess(trainer).set_env(env).set_baseline_provider(
         value_estimator
-    ).plot().train(30, 10000)
+    ).plot().train(100, 10000)
 
     save_model(policy_net)
